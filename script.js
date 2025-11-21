@@ -91,12 +91,12 @@ function openLightbox(index) {
 function closeLightbox(event) {
     if (event && (event.target.id === 'lightbox' || event.target.classList.contains('close-btn') || event.target.classList.contains('lightbox-slide'))) {
         // Allow closing if clicking outside image (on slide padding) or on close btn
-        // But wait, clicking on slide padding might be accidental. 
+        // But wait, clicking on slide padding might be accidental.
         // Let's stick to close btn or background (lightbox container).
         // The lightbox container covers everything. The track is inside.
-        // If we click the track/slide but not the image? 
+        // If we click the track/slide but not the image?
         // Actually, let's just keep it simple: close btn or explicit background click if possible.
-        // But track covers background. 
+        // But track covers background.
         // Let's allow closing if clicking the slide wrapper (which is full screen) but not the image?
         // The event target will be 'lightbox-slide' if clicked on padding.
 
@@ -140,11 +140,6 @@ function changeImage(direction, event) {
     }
 
     updateTrackPosition();
-}
-
-// Initialize Kakao SDK
-if (typeof Kakao !== 'undefined' && !Kakao.isInitialized()) {
-    Kakao.init('013f1af4df9c7d9bb3137518e5efb00d');
 }
 
 function isMobile() {
