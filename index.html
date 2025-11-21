@@ -1,469 +1,353 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="신랑 ♥ 신부의 결혼식에 초대합니다">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="신랑 ♥ 신부 결혼합니다">
-    <meta property="og:description" content="2025년 3월 15일 토요일 오후 2시">
-    <meta property="og:image" content="./images/main-cover.jpg">
-    <meta property="og:type" content="website">
-
-    <title>신랑 ♥ 신부 결혼식 초대장</title>
-
+    <title>김종민 ❤️ 방원희 결혼합니다</title>
+    <link rel="stylesheet" href="style.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Pretendard Font -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/variables.css">
-    <link rel="stylesheet" href="./css/typography.css">
-    <link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/components.css">
-    <link rel="stylesheet" href="./css/animations.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-
-    <!-- 1. Main Cover Section -->
-    <section id="main-cover" class="section-cover">
-        <div class="cover-overlay"></div>
-        <div class="cover-content">
-            <p class="cover-subtitle fade-in">We're Getting Married</p>
-            <h1 class="cover-title fade-in-delay-1">
-                신랑이름 <span class="heart">♥</span> 신부이름
-            </h1>
-            <p class="cover-date fade-in-delay-2">2025. 03. 15</p>
-            <p class="cover-time fade-in-delay-2">토요일 오후 2시</p>
-            <p class="cover-location fade-in-delay-3">○○ 웨딩홀</p>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
-
-    <!-- 2. Greeting Section -->
-    <section id="greeting" class="section-greeting">
-        <div class="container">
-            <div class="section-icon">✽</div>
-            <h2 class="section-title">소중한 분들을 초대합니다</h2>
-
-            <div class="greeting-text">
-                <p>
-                    서로가 마주보며 다져온 사랑을<br>
-                    이제 함께 한 곳을 바라보며<br>
-                    걸어갈 수 있는 큰 사랑으로 키우고자 합니다.
-                </p>
-                <p>
-                    저희 두 사람이 사랑의 이름으로<br>
-                    지켜나갈 수 있도록<br>
-                    앞날을 축복해 주시면 감사하겠습니다.
-                </p>
+    <div class="container">
+        <!-- Intro Section -->
+        <section id="intro" class="section intro fade-in-section">
+            <div class="intro-image-container">
+                <img src="assets/resized/main.jpeg" alt="Main Wedding Photo" class="main-image">
             </div>
-
-            <div class="parents-info">
-                <div class="parent-item">
-                    <span class="parent-groom">신랑</span>
-                    <span class="parent-name">김철수·이영희</span>
-                    <span class="parent-relation">의 장남</span>
-                    <strong>홍길동</strong>
+            <div class="intro-text">
+                <p class="wedding-title">WEDDING INVITATION</p>
+                <div class="names">
+                    <span class="name">김종민</span>
+                    <span class="divider">|</span>
+                    <span class="name">방원희</span>
                 </div>
-                <div class="parent-item">
-                    <span class="parent-bride">신부</span>
-                    <span class="parent-name">박민수·최순자</span>
-                    <span class="parent-relation">의 장녀</span>
-                    <strong>이몽룡</strong>
-                </div>
+                <p class="date">2026년 3월 7일 토요일 오후 2시</p>
+                <p class="location">노블발렌티 대치점</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 3. Couple Section -->
-    <section id="couple" class="section-couple">
-        <div class="container">
-            <div class="couple-grid">
-                <!-- Groom -->
-                <div class="couple-card">
-                    <div class="couple-image-wrapper">
-                        <img src="./images/groom.jpg" alt="신랑" class="couple-image" loading="lazy">
-                    </div>
-                    <div class="couple-info">
-                        <h3 class="couple-name">홍길동</h3>
-                        <p class="couple-relation">김철수·이영희의 장남</p>
-                        <div class="couple-contact">
-                            <a href="tel:01012345678" class="contact-btn" aria-label="신랑에게 전화하기">
-                                <span>📞</span>
-                            </a>
-                            <a href="sms:01012345678" class="contact-btn" aria-label="신랑에게 문자하기">
-                                <span>💬</span>
-                            </a>
-                        </div>
-                    </div>
+        <!-- Invitation Text Section -->
+        <section id="invitation" class="section invitation fade-in-section">
+            <!-- <div class="framed-image-container">
+                <img src="assets/resized/second.jpeg" alt="Framed Wedding Photo" class="framed-image">
+            </div> -->
+            <div class="section-title">초대합니다</div>
+            <div class="invitation-content">
+                <p>인생이라는 마라톤을</p>
+                <p>이제는 부부라는 이름으로</p>
+                <p>나란히 달리려합니다.</p>
+                <br>
+                <p>서로의 페이스메이커가 되어</p>
+                <p>숨이 차면 기다려주고</p>
+                <p>따뜻한 봄바람을 느끼며</p>
+                <p>함께 결승선을 향해 나아가겠습니다.</p>
+                <p>저희의 출발선에 함께해 주세요.</p>
+                <br>
+                <img src="assets/resized/third.jpeg" alt="Invitation Photo" class="invitation-image">
+            </div>
+        </section>
 
-                    <div class="parent-contact">
-                        <div class="parent-contact-item">
-                            <span class="parent-label">아버지</span>
-                            <span class="parent-contact-name">김철수</span>
-                            <div class="parent-contact-btns">
-                                <a href="tel:01011111111" class="contact-btn-small" aria-label="신랑 아버지에게 전화하기">📞</a>
-                                <a href="sms:01011111111" class="contact-btn-small" aria-label="신랑 아버지에게 문자하기">💬</a>
-                            </div>
-                        </div>
-                        <div class="parent-contact-item">
-                            <span class="parent-label">어머니</span>
-                            <span class="parent-contact-name">이영희</span>
-                            <div class="parent-contact-btns">
-                                <a href="tel:01022222222" class="contact-btn-small" aria-label="신랑 어머니에게 전화하기">📞</a>
-                                <a href="sms:01022222222" class="contact-btn-small" aria-label="신랑 어머니에게 문자하기">💬</a>
-                            </div>
-                        </div>
+        <!-- Couple Info Section -->
+        <section id="couple" class="section couple fade-in-section">
+            <div class="couple-info">
+                <div class="groom-info">
+                    <div class="parents">
+                        <span>김재흥</span> · <span>김정숙</span> 의 <span class="relation">아들</span>
                     </div>
+                    <div class="name">종민</div>
                 </div>
-
-                <!-- Bride -->
-                <div class="couple-card">
-                    <div class="couple-image-wrapper">
-                        <img src="./images/bride.jpg" alt="신부" class="couple-image" loading="lazy">
+                <div class="bride-info">
+                    <div class="parents">
+                        <span>방승두</span> · <span>남숙희</span> 의 <span class="relation">딸</span>
                     </div>
-                    <div class="couple-info">
-                        <h3 class="couple-name">이몽룡</h3>
-                        <p class="couple-relation">박민수·최순자의 장녀</p>
-                        <div class="couple-contact">
-                            <a href="tel:01087654321" class="contact-btn" aria-label="신부에게 전화하기">
-                                <span>📞</span>
-                            </a>
-                            <a href="sms:01087654321" class="contact-btn" aria-label="신부에게 문자하기">
-                                <span>💬</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="parent-contact">
-                        <div class="parent-contact-item">
-                            <span class="parent-label">아버지</span>
-                            <span class="parent-contact-name">박민수</span>
-                            <div class="parent-contact-btns">
-                                <a href="tel:01033333333" class="contact-btn-small" aria-label="신부 아버지에게 전화하기">📞</a>
-                                <a href="sms:01033333333" class="contact-btn-small" aria-label="신부 아버지에게 문자하기">💬</a>
-                            </div>
-                        </div>
-                        <div class="parent-contact-item">
-                            <span class="parent-label">어머니</span>
-                            <span class="parent-contact-name">최순자</span>
-                            <div class="parent-contact-btns">
-                                <a href="tel:01044444444" class="contact-btn-small" aria-label="신부 어머니에게 전화하기">📞</a>
-                                <a href="sms:01044444444" class="contact-btn-small" aria-label="신부 어머니에게 문자하기">💬</a>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="name">원희</div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 4. Gallery Section -->
-    <section id="gallery" class="section-gallery">
-        <div class="container">
-            <h2 class="section-title">Our Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-index="0">
-                    <img src="./images/gallery/photo1.jpg" alt="갤러리 사진 1" loading="lazy">
+        <!-- Calendar Section -->
+        <section id="calendar" class="section calendar fade-in-section">
+            <div class="calendar-header">
+                <p>2026년 3월 7일 토요일 오후 2시</p>
+                <p>노블발렌티 대치점 단독홀</p>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-title">3월</div>
+                <table class="calendar-table">
+                    <thead>
+                        <tr>
+                            <th class="sun">일</th>
+                            <th>월</th>
+                            <th>화</th>
+                            <th>수</th>
+                            <th>목</th>
+                            <th>금</th>
+                            <th>토</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="sun">1</td>
+                            <td class="sun">2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td class="wedding-day">7</td>
+                        </tr>
+                        <tr>
+                            <td class="sun">8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <td class="sun">15</td>
+                            <td>16</td>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                            <td>20</td>
+                            <td>21</td>
+                        </tr>
+                        <tr>
+                            <td class="sun">22</td>
+                            <td>23</td>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                            <td>27</td>
+                            <td>28</td>
+                        </tr>
+                        <tr>
+                            <td class="sun">29</td>
+                            <td>30</td>
+                            <td>31</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-day-container">
+                <p>종민 <span class="d-day-heart">♥</span> 원희 의 결혼식이 <span id="d-day-count"></span>일 남았습니다.</p>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section gallery fade-in-section">
+            <div class="section-title">GALLERY</div>
+            <div class="gallery-container">
+                <div class="gallery-scroll-wrapper">
+                    <img src="assets/gallery/1.jpg" alt="Gallery 1" class="gallery-item" onclick="openLightbox(0)">
+                    <img src="assets/gallery/2.jpg" alt="Gallery 2" class="gallery-item" onclick="openLightbox(1)">
+                    <img src="assets/gallery/3.jpg" alt="Gallery 3" class="gallery-item" onclick="openLightbox(2)">
+                    <img src="assets/gallery/4.jpg" alt="Gallery 4" class="gallery-item" onclick="openLightbox(3)">
+                    <img src="assets/gallery/5.jpg" alt="Gallery 5" class="gallery-item" onclick="openLightbox(4)">
+                    <img src="assets/gallery/6.jpg" alt="Gallery 6" class="gallery-item" onclick="openLightbox(5)">
+                    <img src="assets/gallery/7.jpg" alt="Gallery 7" class="gallery-item" onclick="openLightbox(6)">
+                    <img src="assets/gallery/8.jpg" alt="Gallery 8" class="gallery-item" onclick="openLightbox(7)">
+                    <img src="assets/gallery/9.jpg" alt="Gallery 9" class="gallery-item" onclick="openLightbox(8)">
+                    <img src="assets/gallery/10.jpg" alt="Gallery 10" class="gallery-item" onclick="openLightbox(9)">
+                    <img src="assets/gallery/11.jpg" alt="Gallery 11" class="gallery-item" onclick="openLightbox(10)">
+                    <img src="assets/gallery/12.jpg" alt="Gallery 12" class="gallery-item" onclick="openLightbox(11)">
+                    <img src="assets/gallery/13.jpg" alt="Gallery 13" class="gallery-item" onclick="openLightbox(12)">
+                    <img src="assets/gallery/14.jpg" alt="Gallery 14" class="gallery-item" onclick="openLightbox(13)">
+                    <img src="assets/gallery/15.jpg" alt="Gallery 15" class="gallery-item" onclick="openLightbox(14)">
                 </div>
-                <div class="gallery-item" data-index="1">
-                    <img src="./images/gallery/photo2.jpg" alt="갤러리 사진 2" loading="lazy">
-                </div>
-                <div class="gallery-item" data-index="2">
-                    <img src="./images/gallery/photo3.jpg" alt="갤러리 사진 3" loading="lazy">
-                </div>
-                <div class="gallery-item" data-index="3">
-                    <img src="./images/gallery/photo4.jpg" alt="갤러리 사진 4" loading="lazy">
-                </div>
-                <div class="gallery-item" data-index="4">
-                    <img src="./images/gallery/photo5.jpg" alt="갤러리 사진 5" loading="lazy">
-                </div>
-                <div class="gallery-item" data-index="5">
-                    <img src="./images/gallery/photo6.jpg" alt="갤러리 사진 6" loading="lazy">
+                <div class="swipe-hint">
+                    <span>옆으로 넘겨보세요 →</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Gallery Modal -->
-    <div id="gallery-modal" class="modal">
-        <button class="modal-close" aria-label="닫기">&times;</button>
-        <button class="modal-prev" aria-label="이전">&lt;</button>
-        <button class="modal-next" aria-label="다음">&gt;</button>
-        <img id="modal-image" src="" alt="갤러리 사진">
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="lightbox hidden" onclick="closeLightbox(event)">
+            <span class="close-btn" onclick="closeLightbox(event)">&times;</span>
+            <div class="lightbox-nav prev" onclick="changeImage(-1, event)">&#10094;</div>
+            <div class="lightbox-track" id="lightbox-track">
+                <!-- Images will be injected by JS -->
+            </div>
+            <div class="lightbox-nav next" onclick="changeImage(1, event)">&#10095;</div>
+        </div>
+
+        <!-- Location Section -->
+        <section id="location" class="section location fade-in-section">
+            <div class="section-title">오시는 길</div>
+            <div class="location-details">
+                <p class="venue-name">노블발렌티 대치점 단독홀</p>
+                <p class="venue-address">서울 강남구 영동대로 325</p>
+                <p class="venue-tel">02-539-0400</p>
+            </div>
+            <!-- 1. 지도 노드 -->
+            <div id="daumRoughmapContainer1763705921139" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+            <div class="navigation-buttons">
+                <button class="nav-btn" onclick="openMap('kakao')">
+                    <img src="assets/icons/kakao-map.png" alt="Kakao Map" class="nav-icon">
+                    <span>카카오맵</span>
+                </button>
+                <div class="nav-divider"></div>
+                <button class="nav-btn" onclick="openMap('naver')">
+                    <img src="assets/icons/naver-map.png" alt="Naver Map" class="nav-icon">
+                    <span>네이버지도</span>
+                </button>
+                <div class="nav-divider"></div>
+                <button class="nav-btn" onclick="openMap('tmap')">
+                    <img src="assets/icons/t-map.jpeg" alt="T-Map" class="nav-icon">
+                    <span>티맵</span>
+                </button>
+            </div>
+
+            <div class="transport-info">
+                <div class="transport-item">
+                    <div class="transport-icon-wrapper">
+                        <img src="assets/icons/subway.png" alt="Subway" class="transport-icon">
+                    </div>
+                    <div class="transport-details">
+                        <h4 class="transport-title">지하철</h4>
+                        <p class="transport-desc">2호선 삼성역 3번출구 30M 전방에서<br>셔틀버스 운행<br>(수시운행, 도보 이용시 7분 소요)</p>
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-icon-wrapper">
+                        <img src="assets/icons/bus.png" alt="Bus" class="transport-icon">
+                    </div>
+                    <div class="transport-details">
+                        <h4 class="transport-title">버스</h4>
+                        <p class="transport-desc">간선 343, 401<br>지선 4318, 4319<br>일반 11-3<br>직행 500-2, 9407, 9507,
+                            9607<br>마을 강남01, 강남06</p>
+                    </div>
+                </div>
+                <div class="transport-item">
+                    <div class="transport-icon-wrapper">
+                        <img src="assets/icons/parking.png" alt="Parking" class="transport-icon">
+                    </div>
+                    <div class="transport-details">
+                        <h4 class="transport-title">주차</h4>
+                        <p class="transport-desc">건물 내 지하주차장 이용 (2시간 무료)<br>만차 시 인근 공영주차장 안내</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Section -->
+        <section id="account" class="section account fade-in-section">
+            <div class="section-title">마음 전하실 곳</div>
+            <div class="account-list">
+                <div class="account-item">
+                    <div class="account-header" onclick="toggleAccount('groom')">
+                        <span>신랑측</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div id="groom-account" class="account-details">
+                        <div class="account-row">
+                            <div class="account-info">
+                                <span class="bank">신랑</span>
+                                <span class="number">국민은행 123-456-7890</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('123-456-7890')">복사</button>
+                        </div>
+                        <div class="account-row">
+                            <div class="account-info">
+                                <span class="bank">아버지</span>
+                                <span class="number">신한은행 110-123-456789</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('110-123-456789')">복사</button>
+                        </div>
+                        <div class="account-row">
+                            <div class="account-info">
+                                <span class="bank">어머니</span>
+                                <span class="number">카카오뱅크 3333-01-1234567</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('3333-01-1234567')">복사</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-item">
+                    <div class="account-header" onclick="toggleAccount('bride')">
+                        <span>신부측</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div id="bride-account" class="account-details">
+                        <div class="account-row">
+                            <div class="account-info">
+                                <span class="bank">신부</span>
+                                <span class="number">우리은행 098-765-4321</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('098-765-4321')">복사</button>
+                        </div>
+                        <div class="account-row">
+                            <div class="account-info">
+                                <span class="bank">아버지</span>
+                                <span class="number">농협은행 352-1234-5678-90</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('352-1234-5678-90')">복사</button>
+                        </div>
+                        <div class="account-row">
+                            <div class="account-info">
+                                <span class="bank">어머니</span>
+                                <span class="number">하나은행 123-456789-00107</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyText('123-456789-00107')">복사</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
-    <!-- 5. Wedding Info Section -->
-    <section id="wedding-info" class="section-wedding-info">
-        <div class="container">
-            <h2 class="section-title">예식이 열리는 날</h2>
-
-            <div class="info-cards">
-                <div class="info-card">
-                    <div class="info-icon">📅</div>
-                    <h3 class="info-title">날짜</h3>
-                    <p class="info-content">2025년 3월 15일</p>
-                    <p class="info-content-sub">토요일</p>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">🕐</div>
-                    <h3 class="info-title">시간</h3>
-                    <p class="info-content">오후 2시</p>
-                </div>
-
-                <div class="info-card">
-                    <div class="info-icon">📍</div>
-                    <h3 class="info-title">장소</h3>
-                    <p class="info-content">○○ 웨딩홀</p>
-                    <p class="info-content-sub">3층 그랜드홀</p>
-                </div>
-            </div>
-
-            <button id="add-to-calendar" class="btn-primary">
-                캘린더에 추가하기
-            </button>
-        </div>
-    </section>
-
-    <!-- 6. Location Section -->
-    <section id="location" class="section-location">
-        <div class="container">
-            <h2 class="section-title">오시는 길</h2>
-
-            <!-- Map -->
-            <div id="map" class="map-container"></div>
-
-            <!-- Address -->
-            <div class="address-box">
-                <p class="address-text">서울특별시 강남구 테헤란로 123</p>
-                <button id="copy-address" class="btn-secondary">주소 복사</button>
-            </div>
-
-            <!-- Transportation Tabs -->
-            <div class="transportation-tabs">
-                <button class="tab-btn active" data-tab="car">🚗 자가용</button>
-                <button class="tab-btn" data-tab="subway">🚇 지하철</button>
-                <button class="tab-btn" data-tab="bus">🚌 버스</button>
-            </div>
-
-            <div class="transportation-content">
-                <div class="tab-content active" id="tab-car">
-                    <h4>자가용 이용시</h4>
-                    <p>네비게이션에 '○○ 웨딩홀' 검색</p>
-                    <p>건물 지하 1~3층 주차 가능 (3시간 무료)</p>
-                    <p>주차 등록은 3층 안내데스크에서 가능합니다</p>
-                </div>
-
-                <div class="tab-content" id="tab-subway">
-                    <h4>지하철 이용시</h4>
-                    <p>2호선 강남역 3번 출구 도보 5분</p>
-                    <p>신분당선 강남역 이용 가능</p>
-                </div>
-
-                <div class="tab-content" id="tab-bus">
-                    <h4>버스 이용시</h4>
-                    <p>간선: 146, 341, 360</p>
-                    <p>지선: 3414, 4419</p>
-                    <p>광역: 1100, 1700, 2000</p>
-                </div>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div class="navigation-btns">
-                <a href="https://map.kakao.com/" target="_blank" class="btn-navi">
-                    카카오맵
-                </a>
-                <a href="https://map.naver.com/" target="_blank" class="btn-navi">
-                    네이버지도
-                </a>
-                <a href="https://www.google.com/maps" target="_blank" class="btn-navi">
-                    구글맵
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. Account Section -->
-    <section id="account" class="section-account">
-        <div class="container">
-            <h2 class="section-title">마음 전하실 곳</h2>
-            <p class="section-subtitle">참석이 어려우신 분들을 위해 계좌번호를 안내드립니다</p>
-
-            <!-- Groom Account -->
-            <div class="account-card">
-                <button class="account-toggle" data-target="groom-account">
-                    <span>신랑측 계좌번호</span>
-                    <span class="toggle-icon">▼</span>
-                </button>
-                <div id="groom-account" class="account-content">
-                    <div class="account-item">
-                        <div class="account-info">
-                            <span class="account-bank">○○은행</span>
-                            <span class="account-number">123-456-789012</span>
-                            <span class="account-holder">예금주: 홍길동</span>
-                        </div>
-                        <div class="account-btns">
-                            <button class="btn-copy" data-account="123-456-789012">복사</button>
-                            <button class="btn-kakaopay">카카오페이</button>
-                        </div>
-                    </div>
-
-                    <div class="account-item">
-                        <div class="account-info">
-                            <span class="account-bank">○○은행</span>
-                            <span class="account-number">111-222-333444</span>
-                            <span class="account-holder">예금주: 김철수 (부)</span>
-                        </div>
-                        <div class="account-btns">
-                            <button class="btn-copy" data-account="111-222-333444">복사</button>
-                        </div>
-                    </div>
-
-                    <div class="account-item">
-                        <div class="account-info">
-                            <span class="account-bank">○○은행</span>
-                            <span class="account-number">555-666-777888</span>
-                            <span class="account-holder">예금주: 이영희 (모)</span>
-                        </div>
-                        <div class="account-btns">
-                            <button class="btn-copy" data-account="555-666-777888">복사</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bride Account -->
-            <div class="account-card">
-                <button class="account-toggle" data-target="bride-account">
-                    <span>신부측 계좌번호</span>
-                    <span class="toggle-icon">▼</span>
-                </button>
-                <div id="bride-account" class="account-content">
-                    <div class="account-item">
-                        <div class="account-info">
-                            <span class="account-bank">○○은행</span>
-                            <span class="account-number">987-654-321098</span>
-                            <span class="account-holder">예금주: 이몽룡</span>
-                        </div>
-                        <div class="account-btns">
-                            <button class="btn-copy" data-account="987-654-321098">복사</button>
-                            <button class="btn-kakaopay">카카오페이</button>
-                        </div>
-                    </div>
-
-                    <div class="account-item">
-                        <div class="account-info">
-                            <span class="account-bank">○○은행</span>
-                            <span class="account-number">333-444-555666</span>
-                            <span class="account-holder">예금주: 박민수 (부)</span>
-                        </div>
-                        <div class="account-btns">
-                            <button class="btn-copy" data-account="333-444-555666">복사</button>
-                        </div>
-                    </div>
-
-                    <div class="account-item">
-                        <div class="account-info">
-                            <span class="account-bank">○○은행</span>
-                            <span class="account-number">777-888-999000</span>
-                            <span class="account-holder">예금주: 최순자 (모)</span>
-                        </div>
-                        <div class="account-btns">
-                            <button class="btn-copy" data-account="777-888-999000">복사</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. Guestbook Section -->
-    <section id="guestbook" class="section-guestbook">
-        <div class="container">
-            <h2 class="section-title">축하 메시지</h2>
-
-            <!-- Message Form -->
-            <form id="guestbook-form" class="guestbook-form">
-                <input
-                    type="text"
-                    id="guest-name"
-                    placeholder="이름"
-                    required
-                    maxlength="20"
-                    class="form-input"
-                >
-                <textarea
-                    id="guest-message"
-                    placeholder="축하 메시지를 입력해주세요"
-                    required
-                    maxlength="200"
-                    rows="4"
-                    class="form-textarea"
-                ></textarea>
-                <button type="submit" class="btn-primary">작성하기</button>
-            </form>
-
-            <!-- Messages List -->
-            <div id="messages-list" class="messages-list">
-                <!-- Sample Messages -->
-                <div class="message-card">
-                    <div class="message-header">
-                        <span class="message-author">홍길동</span>
-                        <span class="message-date">2025.02.10</span>
-                    </div>
-                    <p class="message-content">축하합니다! 두 분의 앞날에 행복만 가득하시길 바랍니다.</p>
-                </div>
-
-                <div class="message-card">
-                    <div class="message-header">
-                        <span class="message-author">김철수</span>
-                        <span class="message-date">2025.02.11</span>
-                    </div>
-                    <p class="message-content">결혼을 진심으로 축하드립니다. 항상 행복하세요!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 9. Footer -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="share-btns">
-                <button id="share-kakao" class="share-btn" aria-label="카카오톡 공유">
-                    💌
-                </button>
-                <button id="share-link" class="share-btn" aria-label="링크 복사">
+                <button class="share-btn link" onclick="copyText2(window.location.href)" aria-label="링크 복사">
                     🔗
-                </button>
-                <button id="share-native" class="share-btn" aria-label="공유하기">
-                    📤
                 </button>
             </div>
 
             <div class="footer-text">
-                <p class="footer-message">Thank you<br>for celebrating<br>with us</p>
-                <p class="footer-copyright">© 2025 Wedding Invitation</p>
+                <p class="footer-message">
+                    함께 해주셔서 감사합니다<br>
+                    <span class="footer-eng"></span>Thank you for celebrating with us</span>
+                </p>
+                <p class="footer-copyright">Copyright © 2025 쫑민 All right reserved</p>
             </div>
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
+    <!-- Custom Alert Modal -->
+    <div id="alert-modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="alert-message"></p>
+            <button class="modal-close-btn" onclick="closeAlert()">확인</button>
+        </div>
+    </div>
 
-    <!-- Scripts -->
-    <script src="./js/utils.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./js/map.js"></script>
+    <script src="script.js"></script>
+    <script charset="UTF-8" class="daum_roughmap_loader_script"
+        src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+    <script charset="UTF-8">
+        new daum.roughmap.Lander({
+            "timestamp": "1763705921139",
+            "key": "cx9nj4puxzh",
+            "mapWidth": "380",
+            "mapHeight": "310"
+        }).render();
+    </script>
+
 </body>
+
 </html>
