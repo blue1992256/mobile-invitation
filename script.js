@@ -17,7 +17,7 @@ function copyText(text) {
 
 function copyText2(text) {
     navigator.clipboard.writeText(text).then(() => {
-        showAlert(`복사 완료`);
+        showAlert(`링크 복사 완료`);
     }).catch(err => {
         console.error('복사 실패:', err);
     });
@@ -26,6 +26,8 @@ function copyText2(text) {
 
 // Scroll Animation
 document.addEventListener("DOMContentLoaded", function () {
+    loadGalleryImages();
+
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -47,99 +49,134 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // D-Day Calculation
-    const weddingDate = new Date('2026-03-07T14:00:00');
+    const weddingDate = new Date('2026-03-07T00:00:00');
     const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate date diff
+
     const diffTime = weddingDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-    const dDayElement = document.getElementById('d-day-count');
-    if (dDayElement) {
-        dDayElement.innerText = diffDays;
+    const dDayText = document.getElementById('d-day-text');
+    if (dDayText) {
+        if (diffDays > 0) {
+            dDayText.innerHTML = `종민 <span class="d-day-heart">♥</span> 원희 의 결혼식이 <span id="d-day-count">${diffDays}</span>일 남았습니다.`;
+        } else if (diffDays === 0) {
+            dDayText.innerHTML = `종민 <span class="d-day-heart">♥</span> 원희 우리가 하나 되는 날`;
+        } else {
+            // diffDays is negative
+            dDayText.innerHTML = `종민 <span class="d-day-heart">♥</span> 원희 우리가 하나 된 지 <span id="d-day-count">${Math.abs(diffDays)}</span>일`;
+        }
     }
 });
 
-// Lightbox
+// Gallery Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxTrack = document.getElementById('lightbox-track');
 let currentImageIndex = 0;
-const galleryImages = [
-    "assets/gallery/1.jpg", "assets/gallery/2.jpg", "assets/gallery/3.jpg",
-    "assets/gallery/4.jpg", "assets/gallery/5.jpg", "assets/gallery/6.jpg",
-    "assets/gallery/7.jpg", "assets/gallery/8.jpg", "assets/gallery/9.jpg",
-    "assets/gallery/10.jpg", "assets/gallery/11.jpg", "assets/gallery/12.jpg",
-    "assets/gallery/13.jpg", "assets/gallery/14.jpg", "assets/gallery/15.jpg"
-];
+let galleryImages = []; // Will be populated dynamically
 
-function updateTrackPosition() {
-    const track = document.getElementById('lightbox-track');
-    track.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+// Dynamic Gallery Loading
+const galleryPath = 'assets/wedding/gallery/';
+
+function loadGalleryImages() {
+    const container = document.querySelector('.gallery-scroll-wrapper');
+    if (!container) return;
+
+    container.innerHTML = ''; // Clear existing
+
+    const maxImages = 100; // Safety limit
+
+    function tryLoadImage(idx) {
+        if (idx > maxImages) return;
+
+        const img = new Image();
+        const src = `${galleryPath}${idx}.jpg`;
+
+        img.onload = function () {
+            // Image exists
+            galleryImages.push(src);
+
+            // Create DOM element
+            const imgElem = document.createElement('img');
+            imgElem.src = src;
+            imgElem.alt = `Gallery ${idx}`;
+            imgElem.className = 'gallery-item';
+            imgElem.onclick = () => openLightbox(idx - 1); // 0-based index
+
+            container.appendChild(imgElem);
+
+            // Try next
+            tryLoadImage(idx + 1);
+        };
+
+        img.onerror = function () {
+            // Stop loading
+            console.log(`Loaded ${idx - 1} gallery images.`);
+        };
+
+        img.src = src;
+    }
+
+    tryLoadImage(1);
 }
 
 function openLightbox(index) {
-    const lightbox = document.getElementById('lightbox');
+    if (galleryImages.length === 0) return;
 
     currentImageIndex = index;
-    updateTrackPosition();
+    updateLightboxImage();
 
-    // Fade in
+    const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('hidden');
-    setTimeout(() => {
-        lightbox.classList.add('visible');
-    }, 10);
+    // Force reflow
+    void lightbox.offsetWidth;
+    lightbox.classList.add('visible');
 
     document.body.style.overflow = 'hidden';
 }
 
-function closeLightbox(event) {
-    if (event && (event.target.id === 'lightbox' || event.target.classList.contains('close-btn') || event.target.classList.contains('lightbox-slide'))) {
-        // Allow closing if clicking outside image (on slide padding) or on close btn
-        // But wait, clicking on slide padding might be accidental.
-        // Let's stick to close btn or background (lightbox container).
-        // The lightbox container covers everything. The track is inside.
-        // If we click the track/slide but not the image?
-        // Actually, let's just keep it simple: close btn or explicit background click if possible.
-        // But track covers background.
-        // Let's allow closing if clicking the slide wrapper (which is full screen) but not the image?
-        // The event target will be 'lightbox-slide' if clicked on padding.
-
-        const lightbox = document.getElementById('lightbox');
-        lightbox.classList.remove('visible');
-
-        setTimeout(() => {
-            lightbox.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 400);
-    } else if (!event) {
-        const lightbox = document.getElementById('lightbox');
+function closeLightbox(e) {
+    const lightbox = document.getElementById('lightbox');
+    // Close if clicked on lightbox background (which is the element itself) or close button
+    if (!e || e.target === lightbox || e.target.classList.contains('close-btn')) {
         lightbox.classList.remove('visible');
         setTimeout(() => {
             lightbox.classList.add('hidden');
             document.body.style.overflow = '';
-        }, 400);
+        }, 300);
     }
 }
-
-// Update close logic to handle the new structure
-// If user clicks on 'lightbox', it might be behind the track.
-// The track is full width.
-// So clicks will hit 'lightbox-slide' or 'img'.
-// We should probably add a click listener to 'lightbox-slide' to close?
-// Or just rely on the close button. User experience: clicking outside image usually closes.
-// 'lightbox-slide' is the container of the image. If I click the padding, it's 'lightbox-slide'.
-// If I click the image, it's 'img'.
-// So: if target is 'lightbox-slide', close.
 
 function changeImage(direction, event) {
     if (event) event.stopPropagation();
 
     currentImageIndex += direction;
 
-    // Loop navigation
     if (currentImageIndex >= galleryImages.length) {
         currentImageIndex = 0;
     } else if (currentImageIndex < 0) {
         currentImageIndex = galleryImages.length - 1;
     }
 
-    updateTrackPosition();
+    updateLightboxImage();
+}
+
+function updateLightboxImage() {
+    const lightboxTrack = document.getElementById('lightbox-track');
+    lightboxTrack.innerHTML = '';
+
+    // Create current image slide
+    const slide = document.createElement('div');
+    slide.className = 'lightbox-slide';
+
+    const img = document.createElement('img');
+    img.src = galleryImages[currentImageIndex];
+    img.alt = `Gallery ${currentImageIndex + 1}`;
+    // Add touch-action to image as well
+    img.style.touchAction = 'pan-x';
+
+    slide.appendChild(img);
+    lightboxTrack.appendChild(slide);
 }
 
 function isMobile() {
@@ -275,6 +312,30 @@ document.addEventListener("DOMContentLoaded", function () {
         lightbox.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
+        });
+
+        // Prevent pinch zoom
+        lightbox.addEventListener('touchstart', function (e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        lightbox.addEventListener('touchmove', function (e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        // Prevent iOS gesture zoom
+        lightbox.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
+        lightbox.addEventListener('gesturechange', function (e) {
+            e.preventDefault();
+        });
+        lightbox.addEventListener('gestureend', function (e) {
+            e.preventDefault();
         });
     }
 });
