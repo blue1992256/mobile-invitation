@@ -21,7 +21,6 @@
 
     /* 폰트 패밀리 */
     --font-serif: 'RIDIBatang', serif;
-    --font-sans: 'RIDIBatang', sans-serif;
 
     /* 레이아웃 */
     --max-width: 480px;
@@ -385,6 +384,113 @@ body {
     color: var(--heart-color);
     font-weight: 500;
     font-size: 1.1rem;
+}
+
+/* Running Couple Animation */
+.running-couple-container {
+    margin-top: var(--spacing-xl);
+    padding: 0 var(--spacing-md);
+    width: 100%;
+}
+
+.running-track {
+    position: relative;
+    width: 100%;
+    height: 65px;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.running-track::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.running-track::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 5px;
+    width: 2px;
+    height: 60px;
+    background-image: linear-gradient(to bottom, var(--border-color) 50%, transparent 50%);
+    background-size: 2px 8px;
+    background-repeat: repeat-y;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.goal-label {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    color: var(--heart-color);
+    z-index: 3;
+}
+
+/* 결혼식 당일: 트랙, 점선, 하트 모두 숨기기 */
+.running-track.wedding-day::before {
+    display: none;
+}
+
+.running-track.wedding-day::after {
+    display: none;
+}
+
+.running-track.wedding-day .goal-label {
+    display: none;
+}
+
+.runner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    bottom: 5px;
+    transition: left 0.8s ease-out, right 0.8s ease-out;
+    z-index: 2;
+}
+
+.runner.groom {
+    left: 0;
+}
+
+.runner.bride {
+    right: 0;
+}
+
+.couple-together {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.6s ease-in-out;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    z-index: 2;
+}
+
+.couple-together.visible {
+    transform: translateX(-50%) scale(1);
+}
+
+.couple-together.hidden {
+    display: none;
+}
+
+.runner.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Gallery */

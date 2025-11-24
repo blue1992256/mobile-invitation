@@ -23,6 +23,9 @@ function copyText2(text) {
     });
 }
 
+const weddingDate = new Date('2026-03-07T00:00:00');
+const today = new Date();
+const dday100 = new Date('2025-11-27T00:00:00'); // 프로젝트 시작일 (100일 전)
 
 // Scroll Animation
 document.addEventListener("DOMContentLoaded", function () {
@@ -49,8 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // D-Day Calculation
-    const weddingDate = new Date('2026-03-07T00:00:00');
-    const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate date diff
 
     const diffTime = weddingDate - today;
@@ -67,6 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
             dDayText.innerHTML = `종민 <span class="d-day-heart">♥</span> 원희 우리가 하나 된 지 <span id="d-day-count">${Math.abs(diffDays)}</span>일`;
         }
     }
+
+    // Running Couple Animation
+    updateRunningCouple(diffDays);
 });
 
 // Gallery Lightbox
@@ -339,3 +343,54 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Running Couple Animation Function
+function updateRunningCouple(daysRemaining) {
+    const groomRunner = document.getElementById('groom-running');
+    const brideRunner = document.getElementById('bride-running');
+    const coupleTogether = document.getElementById('couple-together');
+    const runningTrack = document.querySelector('.running-track');
+
+    if (!groomRunner || !brideRunner || !coupleTogether || !runningTrack) return;
+
+    // 결혼식 당일 또는 지난 경우
+    if (daysRemaining <= 0) {
+        // 달리는 이미지 숨기기
+        groomRunner.classList.add('hidden');
+        brideRunner.classList.add('hidden');
+
+        // 트랙, 점선, 하트 모두 숨기기
+        runningTrack.classList.add('wedding-day');
+
+        // 함께 있는 이미지 표시
+        coupleTogether.classList.remove('hidden');
+        setTimeout(() => {
+            coupleTogether.classList.add('visible');
+        }, 100);
+        return;
+    }
+
+    // 프로젝트 시작일부터 결혼식까지의 총 일수를 계산
+    const totalDays = Math.ceil((weddingDate - dday100) / (1000 * 60 * 60 * 24));
+
+    // 진행률 계산 (0 ~ 1)
+    const progress = Math.max(0, Math.min(1, (totalDays - daysRemaining) / totalDays));
+
+    // 신랑: 왼쪽 0%에서 중앙으로 이동 (겹침 방지를 위해 37.3%까지만)
+    // 신부: 오른쪽 0%에서 중앙으로 이동 (겹침 방지를 위해 37.3%까지만)
+    const groomPosition = progress * 37.3; // left: 0% → 37.3%
+    const bridePosition = progress * 37.3; // right: 0% → 37.3%
+
+    groomRunner.style.left = `${groomPosition}%`;
+    brideRunner.style.right = `${bridePosition}%`;
+    brideRunner.style.left = 'auto'; // Override left positioning
+
+    // 트랙, 점선, 하트 표시
+    runningTrack.classList.remove('wedding-day');
+
+    // 함께 있는 이미지는 숨김 상태 유지
+    coupleTogether.classList.add('hidden');
+    coupleTogether.classList.remove('visible');
+    groomRunner.classList.remove('hidden');
+    brideRunner.classList.remove('hidden');
+}
