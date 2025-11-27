@@ -239,8 +239,18 @@ function openMap(app) {
         const isAndroid = userAgent.indexOf("android") > -1;
         const isIOS = /iphone|ipad|ipod/.test(userAgent);
 
+        let appOpened = false;
+        let visibilityChangeHandler;
 
-        const start = Date.now();
+        // Visibility API를 사용하여 페이지가 백그라운드로 갔는지 감지
+        visibilityChangeHandler = function() {
+            if (document.hidden) {
+                // 페이지가 백그라운드로 갔음 = 앱이 열렸음
+                appOpened = true;
+            }
+        };
+
+        document.addEventListener('visibilitychange', visibilityChangeHandler);
 
         // Try to open the app
         if (app === 'kakao') {
@@ -251,20 +261,20 @@ function openMap(app) {
             location.href = `tmap://route?goalname=${name}&goalx=${lng}&goaly=${lat}`;
         }
 
-        // Fallback logic
+        // 2.5초 후에 앱이 열렸는지 체크
         setTimeout(function () {
-            const now = Date.now();
-            // If less than 3 seconds have passed, it means the browser wasn't put in background (app didn't open)
-            // So we redirect to store.
-            // If more than 3 seconds passed, it means app opened and user came back, so we don't redirect.
-            if (now - start < 3000) {
+            document.removeEventListener('visibilitychange', visibilityChangeHandler);
+
+            // 앱이 열리지 않았으면 스토어로 리다이렉트
+            if (!appOpened) {
                 if (isAndroid) {
                     location.href = STORES[app].android;
                 } else if (isIOS) {
                     location.href = STORES[app].ios;
                 }
             }
-        }, 1000); // Check after 1 second
+            // 앱이 열렸으면 아무것도 하지 않음
+        }, 1000);
 
     } else {
         // Desktop fallback
