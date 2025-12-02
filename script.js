@@ -23,12 +23,109 @@ function copyText2(text) {
     });
 }
 
-const weddingDate = new Date('2026-03-07T00:00:00');
-const today = new Date();
-const dday100 = new Date('2025-11-27T00:00:00'); // 프로젝트 시작일 (100일 전)
+// Global variables for wedding dates (will be loaded from JSON)
+let weddingDate = null;
+let dday100 = null;
+
+// Load Personal Information
+async function loadPersonalInfo() {
+    try {
+        const response = await fetch('personal-info.json');
+        if (!response.ok) {
+            throw new Error('개인정보 파일을 찾을 수 없습니다.');
+        }
+        const data = await response.json();
+
+        // 결혼식 날짜 전역 변수 설정
+        weddingDate = new Date(data.wedding.dateISO + 'T00:00:00');
+        dday100 = new Date(data.wedding.dday100 + 'T00:00:00');
+
+        // 메타 태그 업데이트
+        document.title = data.meta.title;
+        document.querySelector('meta[property="og:title"]').content = data.meta.title;
+        document.querySelector('meta[property="og:description"]').content = data.meta.ogDescription;
+
+        // 신랑신부 이름
+        const nameElements = document.querySelectorAll('.names .name');
+        if (nameElements.length >= 2) {
+            nameElements[0].textContent = data.couple.groom.name;
+            nameElements[1].textContent = data.couple.bride.name;
+        }
+
+        // 결혼식 날짜와 장소
+        document.querySelector('.intro-text .date').textContent = data.wedding.date;
+        document.querySelector('.intro-text .location').textContent = data.wedding.venue.name;
+        document.querySelector('.calendar-header p').textContent = data.wedding.date;
+        document.querySelector('.venue-name').textContent = data.wedding.venue.name;
+
+        // 부모님 정보
+        const groomParents = document.querySelector('.groom-info .parents');
+        groomParents.innerHTML = `<span>${data.couple.groom.father.name}</span> · <span>${data.couple.groom.mother.name}</span> 의 <span class="relation">아들</span>`;
+
+        const brideParents = document.querySelector('.bride-info .parents');
+        brideParents.innerHTML = `<span>${data.couple.bride.father.name}</span> · <span>${data.couple.bride.mother.name}</span> 의 <span class="relation">딸</span>`;
+
+        // 신랑신부 이름 (닉네임)
+        document.querySelector('.groom-info .name').textContent = data.couple.groom.nickname;
+        document.querySelector('.bride-info .name').textContent = data.couple.bride.nickname;
+
+        // D-day 텍스트 및 러닝 애니메이션 업데이트
+        const diffDays = calculateDDay();
+        updateDDayText(data.couple.groom.nickname, data.couple.bride.nickname, diffDays);
+        updateRunningCouple(diffDays);
+
+        // 계좌 정보
+        updateAccountInfo('groom', data.accounts.groom);
+        updateAccountInfo('bride', data.accounts.bride);
+
+    } catch (error) {
+        console.error('개인정보 로딩 실패:', error);
+        showAlert('개인정보 파일(personal-info.json)을 찾을 수 없습니다. SETUP.md를 참고하여 파일을 생성해주세요.');
+    }
+}
+
+function updateAccountInfo(type, accounts) {
+    const accountContainer = document.getElementById(`${type}-account`);
+    accountContainer.innerHTML = '';
+
+    accounts.forEach(account => {
+        const accountRow = document.createElement('div');
+        accountRow.className = 'account-row';
+        accountRow.innerHTML = `
+            <div class="account-info">
+                <span class="bank">${account.relation}</span>
+                <span class="number">${account.bank} ${account.number}</span>
+            </div>
+            <button class="copy-btn" onclick="copyText('${account.number}')">복사</button>
+        `;
+        accountContainer.appendChild(accountRow);
+    });
+}
+
+function calculateDDay() {
+    if (!weddingDate) return 0;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const diffTime = weddingDate - today;
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+}
+
+function updateDDayText(groomNickname, brideNickname, diffDays) {
+    const dDayText = document.getElementById('d-day-text');
+    if (dDayText) {
+        if (diffDays > 0) {
+            dDayText.innerHTML = `${groomNickname} <span class="d-day-heart">♥</span> ${brideNickname} 의 결혼식이 <span id="d-day-count">${diffDays}</span>일 남았습니다.`;
+        } else if (diffDays === 0) {
+            dDayText.innerHTML = `${groomNickname} <span class="d-day-heart">♥</span> ${brideNickname} 우리가 하나 되는 날`;
+        } else {
+            dDayText.innerHTML = `${groomNickname} <span class="d-day-heart">♥</span> ${brideNickname} 우리가 하나 된 지 <span id="d-day-count">${Math.abs(diffDays)}</span>일`;
+        }
+    }
+}
 
 // Scroll Animation
 document.addEventListener("DOMContentLoaded", function () {
+    loadPersonalInfo();
     loadGalleryImages();
 
     const observerOptions = {
@@ -50,27 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
     sections.forEach(section => {
         observer.observe(section);
     });
-
-    // D-Day Calculation
-    today.setHours(0, 0, 0, 0); // Reset time to midnight for accurate date diff
-
-    const diffTime = weddingDate - today;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    const dDayText = document.getElementById('d-day-text');
-    if (dDayText) {
-        if (diffDays > 0) {
-            dDayText.innerHTML = `종민 <span class="d-day-heart">♥</span> 원희 의 결혼식이 <span id="d-day-count">${diffDays}</span>일 남았습니다.`;
-        } else if (diffDays === 0) {
-            dDayText.innerHTML = `종민 <span class="d-day-heart">♥</span> 원희 우리가 하나 되는 날`;
-        } else {
-            // diffDays is negative
-            dDayText.innerHTML = `종민 <span class="d-day-heart">♥</span> 원희 우리가 하나 된 지 <span id="d-day-count">${Math.abs(diffDays)}</span>일`;
-        }
-    }
-
-    // Running Couple Animation
-    updateRunningCouple(diffDays);
 });
 
 // Gallery Lightbox

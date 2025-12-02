@@ -34,3 +34,6 @@ yarn-error.log*
 # Backup files
 *.bak
 *.backup
+
+# Personal Information (개인정보 파일)
+personal-info.json
