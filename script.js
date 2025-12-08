@@ -75,8 +75,8 @@ async function loadPersonalInfo() {
         updateRunningCouple(diffDays);
 
         // 계좌 정보
-        updateAccountInfo('groom', data.accounts.groom);
-        updateAccountInfo('bride', data.accounts.bride);
+        updateAccountInfo('groom', data.accounts.groom, data.couple.groom);
+        updateAccountInfo('bride', data.accounts.bride, data.couple.bride);
 
     } catch (error) {
         console.error('개인정보 로딩 실패:', error);
@@ -84,22 +84,31 @@ async function loadPersonalInfo() {
     }
 }
 
-function updateAccountInfo(type, accounts) {
+function updateAccountInfo(type, accounts, couple) {
     const accountContainer = document.getElementById(`${type}-account`);
     accountContainer.innerHTML = '';
 
-    accounts.forEach(account => {
-        const accountRow = document.createElement('div');
-        accountRow.className = 'account-row';
-        accountRow.innerHTML = `
+    for (let i = 0; i < accounts.length; i++) {
+      const account = accounts[i];
+      let accountOwner = '';
+      if (i === 0) {
+        accountOwner = couple.name;
+      } else if (i === 1) {
+        accountOwner = couple.father.name;
+      } else if (i === 2) {
+        accountOwner = couple.mother.name;
+      }
+      const accountRow = document.createElement('div');
+      accountRow.className = 'account-row';
+      accountRow.innerHTML = `
             <div class="account-info">
-                <span class="bank">${account.relation}</span>
+                <span class="bank">${account.relation} ${accountOwner}</span>
                 <span class="number">${account.bank} ${account.number}</span>
             </div>
             <button class="copy-btn" onclick="copyText('${account.number}')">복사</button>
         `;
-        accountContainer.appendChild(accountRow);
-    });
+      accountContainer.appendChild(accountRow);
+    }
 }
 
 function calculateDDay() {
