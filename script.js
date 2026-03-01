@@ -471,13 +471,18 @@ function updateRunningCouple(daysRemaining) {
     // 진행률 계산 (0 ~ 1)
     const progress = Math.max(0, Math.min(1, (totalDays - daysRemaining) / totalDays));
 
-    // 신랑: 왼쪽 0%에서 중앙으로 이동 (겹침 방지를 위해 37.3%까지만)
-    // 신부: 오른쪽 0%에서 중앙으로 이동 (겹침 방지를 위해 37.3%까지만)
-    const groomPosition = progress * 37.3; // left: 0% → 37.3%
-    const bridePosition = progress * 37.3; // right: 0% → 37.3%
+    // 실제 트랙 너비를 기준으로 최대 이동 거리를 픽셀로 계산 (화면 폭에 관계없이 겹침 방지)
+    const trackWidth = runningTrack.offsetWidth;
+    const runnerWidth = groomRunner.offsetWidth || 60;
+    const minGap = -20; // 두 이미지 사이 최소 간격 (px)
+    const maxPosition = Math.max(0, (trackWidth - runnerWidth * 2 - minGap) / 2);
 
-    groomRunner.style.left = `${groomPosition}%`;
-    brideRunner.style.right = `${bridePosition}%`;
+    const groomPositionPx = progress * maxPosition;
+    const bridePositionPx = progress * maxPosition;
+
+    groomRunner.style.left = `${groomPositionPx}px`;
+    groomRunner.style.right = 'auto';
+    brideRunner.style.right = `${bridePositionPx}px`;
     brideRunner.style.left = 'auto'; // Override left positioning
 
     // 트랙, 점선, 하트 표시
